@@ -1,15 +1,18 @@
-##<a name="index"/>目录&nbsp;&nbsp;(具体细节[wiki文档](https://github.com/sohutv/cachecloud/wiki "Cachecloud Wiki")、[page](http://sohutv.github.io/cachecloud "Cachecloud page")、[视频教程](http://my.tv.sohu.com/pl/9100280/index.shtml "Cachecloud video")、QQ群：534429768)
+##<a name="index"/>目录&nbsp;&nbsp;(具体细节[wiki文档](https://github.com/sohutv/cachecloud/wiki "Cachecloud Wiki")、[page](http://cachecloud.github.io/ "Cachecloud page")、QQ群：534429768)
 * [一、CacheCloud是做什么的](#cc1)
 * [二、CacheCloud提供哪些功能](#cc2)
 * [三、CacheCloud解决什么问题](#cc3)
 * [四、CacheCloud提供的价值](#cc4) 
 * [五、CacheCloud在搜狐的规模](#cc5)
 * [六、CacheCloud环境需求](#cc6)
-* [七、CacheCloud快速开始](#cc7)
-    * [1.初始化数据库](#cc7-1)
-    * [2.CacheCloud项目配置](#cc7-2)
-    * [3.启动cachecloud系统](#cc7-3)
-    * [4.添加机器](#cc7-4)
+* [七、CacheCloud相关文档](#cc7)
+    * [1.快速开始](#cc7)
+    * [2.常见问题](#cc7)
+    * [3.开发计划](#cc7)
+    * [4.已存在Redis接入CacheCloud](#cc7)
+    * [5.迁移工具](#cc7)
+* [八、CacheCloud开发计划TODO LIST](#cc8)
+* [九、CacheCloud已知用户](#cc9)
 
 <a name="cc1"/>
 ## 一、CacheCloud是做什么的
@@ -28,7 +31,8 @@
 +  **完善运维：**    提供自动运维和简化运维操作功能，避免纯手工运维出错。
 +  **方便的客户端：**方便快捷的客户端接入。
 +  **元数据管理：**    提供机器、应用、实例、用户信息管理。
-+  **流程化：**      提供申请，运维，伸缩，修改等完善的处理流程 
++  **流程化：**      提供申请，运维，伸缩，修改等完善的处理流程
++  **一键导入：**      [一键导入已经存在Redis](http://cachecloud.github.io/2016/04/17/%E5%B7%B2%E5%AD%98%E5%9C%A8Redis%E6%8E%A5%E5%85%A5CacheCloud/)
 
 <a name="cc3"/>
 ## 三、CacheCloud解决什么问题 ###
@@ -59,10 +63,10 @@ Redis的开发人员如同使用Mysql一样，不需要运维Mysql服务器，�
 
 <a name="cc5"/>
 ## 五、CacheCloud在搜狐的规模 ###
-+  每天100+亿次命令调用
++  每天200+亿次命令调用
 +  2T+的内存空间
-+  800+个Redis实例
-+  100+台机器
++  1100+个Redis实例
++  150+台机器
 
 <a name="cc6"/>
 ## 六、CacheCloud环境需求 ###
@@ -72,92 +76,25 @@ Redis的开发人员如同使用Mysql一样，不需要运维Mysql服务器，�
 +  Redis 3
 
 <a name="cc7"/>
-## 七、CacheCloud快速开始 ###
+## 七、相关文档
++ [快速开始](https://github.com/sohutv/cachecloud/wiki/3.%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3)
++ [常见问题](http://cachecloud.github.io/2016/04/12/CacheCloud%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/)
++ [已存在Redis接入CacheCloud](http://cachecloud.github.io/2016/04/17/%E5%B7%B2%E5%AD%98%E5%9C%A8Redis%E6%8E%A5%E5%85%A5CacheCloud/)
++ [资源归档](http://cachecloud.github.io/2016/04/12/CacheCloud%E6%96%87%E6%A1%A3%E5%BD%92%E6%A1%A3/)
++ [开发计划](http://cachecloud.github.io/2016/04/17/v2%E8%AE%A1%E5%88%92/)
++ [迁移工具](http://cachecloud.github.io/2016/06/28/1.2.%20%E8%BF%81%E7%A7%BB%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/)
 
-<a name="cc7-1"/>
-####1、初始化数据库
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;导入项目中cachecloud.sql初始化库表结构。默认插入admin超级管理员
+### 更多内容参考：[wiki文档](https://github.com/sohutv/cachecloud/wiki)、[cachecloud官方博客](http://cachecloud.github.io/)
 
-<a name="cc7-2"/>
-####2、CacheCloud项目配置
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用了maven作为项目构建的工具，提供了 local.properties和online.properties两套配置作为测试、线上的隔离。
-属性配置说明：
-	
+<a name="cc8"/>
+## 八、开发计划-TODO LIST ###
+[后期开发计划](http://cachecloud.github.io/2016/04/17/v2%E8%AE%A1%E5%88%92/)
 
-| 属性名 | 说明  | 示例 |
-| :-------------------------- |:----------------------------- | :----------------------------------------:|
-| cachecloud.db.url      | mysql驱动url     | jdbc:mysql://127.0.0.1:3306/cache-cloud |
-| cachecloud.db.user     | mysql用户名      |  admin |
-| cachecloud.db.password | mysql密码        |  admin | 
-| cachecloud.machine.username | 服务器用户名,用于ssh        | ${your machine username} | 
-| cachecloud.machine.password | 服务器密码,用于ssh        |  ${your machine password} | 
-| web.port | spring-boot内嵌tomcat启动端口        | 8080  | 		
-		
-		
-		
-<a name="cc7-3"/>
-####3、启动cachecloud系统
+<a name="cc9"/>
+## 九、已知用户 ###
+<img src="http://i3.itc.cn/20161231/3084_491ee428_e701_fb10_0586_bc1a2973801f_1.png">
 
-#####(1). 本地启动:
-+  在cachecloud根目录下运行
-```Java        
-mvn clean compile install -Plocal
-```
-+  在cachecloud-web模块下运行
-```Java        
-mvn spring-boot:run
-```
+除此之外，还有天津联怡科技有限公司、瑞友科技、厦门美好出行物联网技术有限公司、北京九瑞网络科技有限公司、深圳市深软信息技术有限公司、欧乐在线科技有限公司、慧科教育、上海仁画信息股份有限公司等。
 
-#####(2). 生产环境
-+  在cachecloud根目录下运行
-```Java        
-mvn clean compile install -Ponline
-```
-+  拷贝war包(cachecloud-open-web/target/cachecloud-open-web-1.0-SNAPSHOT.war)到/opt/cachecloud-web下
-+  拷贝配置文件(cachecloud-open-web/src/main/resources/cachecloud-web.conf)到/opt/cachecloud-web下，并改名为cachecloud-open-web-1.0-SNAPSHOT.conf（spring-boot要求，否则配置不生效）
-+  启动
-```Java
-sudo ln -s /opt/cachecloud-web/cachecloud-open-web-1.0-SNAPSHOT.war /etc/init.d/cachecloud-web
-/etc/init.d/cachecloud-web start 
-```        
-        
-        
-#####(3). 登录确认
-
-#####(a) 访问：http://127.0.0.1:9999
-(9999是tomcat的端口号，具体要参考第三节中的online.properties和local.properties中的web.port)
-#####(b) 如果访问正常，请使用用户名:admin、密码:admin访问系统，跳转到应用列表下：
-<img src="http://i1.itc.cn/20160304/3084_b7374fe0_1136_79a9_6de7_699599da7345_1.png">
-
-<a name="cc7-4"/>
-####4、添加机器
-#####(1). 运行脚本:
-cachecloud项目中的cachecloud-init.sh脚本是用来初始化服务器的cachecloud环境，主要工作如下：
-
-+  **(a). 创建cachecloud项目用户**：因为cachecloud项目的部分功能(redis启动、服务器监控)是通过ssh完成的，所以这里的用户和密码要和项目中的相对应，具体详见第三节。
-
-+  **(b). 创建cachecloud项目的工作目录、数据目录、配置目录、日志目录、redis安装目录、临时目录等等。**(/opt/cachecloud/data、/opt/cachecloud/conf、/opt/cachecloud/logs、/opt/cachecloud/redis、/tmp/cachecloud)
-
-+  **(c). 安装最新的release版本的Redis**
-
-#####(2). 脚本执行
-+  (a). 使用root登录目标服务器。
-+  (b). 将cachecloud-init.sh脚本拷贝到目标服务器当前用户目录下。
-+  (c). 执行 sh cachecloud-init.sh ${yourusername}
-+  (d). 两次确认密码
-+  (e). 一路安装直到成功。
-
-#####(3). 建议和警告 
-+  (a). 请在root用户下执行初始化脚本，因为初始化脚本涉及到了用户的创建等较高的权限。
-+  (b). 出于安全的考虑，所选的机器最好不要有外网IP地址。
-+  (c). 用户名和密码最好不要用cachecloud, 密码尽可能复杂。
-+  (d). 机器的ssh端口最好是22。
-+  (e). 请确保/opt/有足够的硬盘空间，因为/opt/cachecloud/data要存储RDB和AOF的持久化文件，如果硬盘过小，会造成持久化失败。（如果硬盘确实很小，建议建立一个软链接到/opt/cachecloud/data,且保证软链接的目录也是username用户，一定要保证/opt/cachecloud的目录结构）
-+  (f). 脚本中目前使用的是redis-3.0.6，如有需要请自行替换，建议使用3.0 release以后的版本。
-    
-#####(4). 添加机器 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进入管理员界面(http://ip:port/manage/total/list)，进入机器管理，点击添加机器，添加机器信息是开通应用的基础。
-<img src="http://i2.itc.cn/20160127/3084_c9d9d17b_4e86_a17f_5442_cf9cc08c68f3_1.jpg"/>
-
-
+新用户可以从[这里登记](https://github.com/sohutv/cachecloud/issues/42)，我们有特殊“服务”。
  
